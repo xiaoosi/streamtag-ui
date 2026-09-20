@@ -15,7 +15,7 @@ Render HTML layouts and your schema-defined React components progressively from 
 
 **Ask a question. Watch the reply become an interactive interface. Keep chatting.** This recording shows a real model response with fictional business data: chart points and table rows arrive inside the message, a legend toggle works, and a follow-up uses the conversation context. No separate result page.
 
-[Watch the full recording](docs/media/inline-chat.mp4) · [Run this example](examples/chat/README.md) · [How it was recorded](docs/media/README.md#inline-chat-live-model)
+[Watch the full recording](docs/media/inline-chat.mp4) · [Run this example](examples/chat/README.md)
 
 - **Three APIs:** `defineComponent`, `getComponentDescriptions`, and `StreamRenderer`.
 - **Your components:** use an existing chart, table, card, or product component.
@@ -37,7 +37,7 @@ Use React 18.2 or 19 in your application. See the [API example](#the-three-apis)
 
 ![Recorded playground demo: markup arrives, chart series grow point by point, and validated rows populate a React table.](docs/media/streaming-demo.gif)
 
-A recording of the actual playground with fictional data. Watch the second line appear while the chart instance stays mounted. [Watch the full recording](docs/media/streaming-demo.mp4) or [reproduce the recording](docs/media/README.md).
+A recording of the actual playground with fictional data. Watch the second line appear while the chart instance stays mounted. [Watch the full recording](docs/media/streaming-demo.mp4).
 
 ## Try the playground
 
