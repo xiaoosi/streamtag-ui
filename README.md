@@ -11,6 +11,12 @@
 
 StreamTag UI is a small React library for generative interfaces. It combines ordinary HTML layouts with trusted, schema-defined React components. Text can grow while it streams; charts can receive complete data points before the entire chart has arrived.
 
+[![Live inline chat: a natural-language request becomes a growing two-series chart and profit table, followed by an answer in the same conversation.](docs/media/inline-chat.gif)](docs/media/inline-chat.mp4)
+
+**Ask a question. Watch the reply become an interactive interface. Keep chatting.** This recording shows a real model response with fictional business data: chart points and table rows arrive inside the message, a legend toggle works, and a follow-up uses the conversation context. No separate result page.
+
+[Watch the 17-second recording](docs/media/inline-chat.mp4) · [Run this example](examples/chat/README.md) · [How it was recorded](docs/media/README.md#inline-chat-live-model)
+
 - **Three APIs:** `defineComponent`, `getComponentDescriptions`, and `StreamRenderer`.
 - **Your components:** use an existing chart, table, card, or product component.
 - **Your CSS:** ordinary stylesheets, utility classes, and inline styles work within the supported HTML subset. CSS is supplied by the host application.

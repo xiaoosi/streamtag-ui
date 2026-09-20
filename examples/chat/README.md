@@ -2,6 +2,10 @@
 
 A runnable chat starter using **`streamtag-ui@0.1.0` from npm**. Every assistant message owns a `StreamRenderer`: prose, charts, tables, and checklists stream directly into the conversation. Follow-up replies stay inline alongside earlier messages.
 
+[![An inline conversation: chart series and table rows stream into an assistant message, followed by a contextual follow-up.](../../docs/media/inline-chat.gif)](../../docs/media/inline-chat.mp4)
+
+**Natural-language request → streaming chart and table → interaction → follow-up.** Recorded with a real model and fictional input data, at the original speed. [Full-resolution video](../../docs/media/inline-chat.mp4) · [Recording details and reproduction](../../docs/media/README.md#inline-chat-live-model).
+
 The interface and starter prompts are in Chinese; the assistant responds in the user's language. All model connection details are configured on the server. No private repository, provider-specific account, or workspace build of StreamTag is required.
 
 ## Quick start
