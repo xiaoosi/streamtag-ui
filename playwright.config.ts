@@ -6,6 +6,11 @@ export default defineConfig({
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: [
     {
+      command: 'pnpm --filter @streamtag-ui/chat test:browser:serve',
+      url: 'http://127.0.0.1:4175',
+      reuseExistingServer: !process.env.CI,
+    },
+    {
       command:
         'pnpm --filter @streamtag-ui/playground exec vite --host 127.0.0.1 --port 4173 --strictPort',
       url: 'http://127.0.0.1:4173',

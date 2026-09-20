@@ -5,7 +5,7 @@
 [![React](https://img.shields.io/badge/React-18.2%20%7C%2019-149eca?style=flat)](https://react.dev/)
 [![Zod](https://img.shields.io/badge/Zod-4-3068b7?style=flat)](https://zod.dev/)
 
-[Playground](#try-the-playground) · [How It Works](#how-it-works) · [Tailwind example](#tailwind-css) · [API](#the-three-apis) · [Contributing](CONTRIBUTING.md)
+[Playground](#try-the-playground) · [Inline chat](#try-inline-chat) · [How It Works](#how-it-works) · [Tailwind example](#tailwind-css) · [API](#the-three-apis) · [Contributing](CONTRIBUTING.md)
 
 **Let AI compose HTML and your React components, then render them as the text arrives.**
 
@@ -47,6 +47,18 @@ pnpm dev
 Open the local URL printed by Vite. Press **Play stream** to replay a fictional report with an ECharts line chart and a React table. No API key, remote font, or model account is needed. Use one-character chunks to inspect partial numbers, pause or step the stream, edit the markup, and inspect generated model instructions or errors.
 
 The playground is a deterministic replay tool. It does not connect to a model service or manage API keys.
+
+## Try inline chat
+
+The [chat starter](examples/chat/README.md) connects to a real model and renders every assistant reply directly in the conversation. Text, growing chart series, tables, and interactive checklists can appear in the same message. Continue the conversation to ask follow-up questions.
+
+```sh
+cp examples/chat/.env.example examples/chat/.env
+# Set MODEL_BASE_URL, MODEL_API_KEY, and MODEL_NAME in that file.
+pnpm dev:chat
+```
+
+Open **http://127.0.0.1:5174**. The starter uses the published npm package and a server-side OpenAI-compatible Chat Completions adapter. You can copy `examples/chat` into an independent project. See its [setup, component guide, and interaction boundaries](examples/chat/README.md).
 
 ## How It Works
 
@@ -224,6 +236,7 @@ packages/streamtag-ui/   Published library; parser, runtime, and renderer are in
 apps/playground/        Replay playground and real ECharts/React examples
 examples/minimal-react/ Small public-API-only consumer
 examples/tailwind-react/ Tailwind CSS 4 layout and streaming React component
+examples/chat/          Real-model inline chat starter using the npm package
 fixtures/               Markup shared by demonstrations and regression tests
 docs/                   Syntax, behavior, integration, and architecture
 ```
@@ -236,6 +249,7 @@ pnpm exec playwright install chromium
 pnpm test:browser             # Chromium integration and responsive layout tests
 pnpm --filter @streamtag-ui/minimal-react dev
 pnpm --filter @streamtag-ui/tailwind-react dev
+pnpm dev:chat                 # Real model; configure examples/chat/.env first
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md), [quick start](docs/quick-start.md), [streaming](docs/streaming.md), and [architecture](docs/architecture.md).

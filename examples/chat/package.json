@@ -1,0 +1,37 @@
+{
+  "name": "@streamtag-ui/chat",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@10.30.3",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "tsx watch --env-file-if-exists=.env server/index.ts",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "start": "tsx --env-file-if-exists=.env server/index.ts --production",
+    "test": "tsx --test tests/*.test.ts",
+    "test:browser:serve": "tsx tests/browser-server.ts"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "lucide-react": "^0.468.0",
+    "openai": "^6.44.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "streamtag-ui": "0.1.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.0.0"
+  }
+}

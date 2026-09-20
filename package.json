@@ -7,8 +7,9 @@
   },
   "scripts": {
     "dev": "pnpm --filter streamtag-ui build && pnpm --filter @streamtag-ui/playground dev",
+    "dev:chat": "pnpm --filter @streamtag-ui/chat dev",
     "build": "pnpm --filter streamtag-ui build && pnpm --filter \"./apps/*\" --filter \"./examples/*\" build",
-    "test": "vitest run",
+    "test": "vitest run && pnpm --filter @streamtag-ui/chat test",
     "test:browser": "playwright test",
     "typecheck": "pnpm --filter streamtag-ui build && pnpm -r typecheck",
     "format": "prettier --write .",
