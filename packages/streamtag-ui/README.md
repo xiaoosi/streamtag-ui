@@ -1,6 +1,10 @@
-# streamtag-ui
+# StreamTag UI
 
-Render AI-generated HTML and your React components while text streams in.
+**Streaming generative UI for React.**
+
+Render HTML layouts and your schema-defined React components progressively from LLM output. Text appears as it arrives; charts gain complete data points and new series while the rest of the reply is still streaming. StreamTag UI updates your registered components without executing generated JavaScript.
+
+[Watch the inline chat demo](https://github.com/xiaoosi/streamtag-ui#readme) · [Run the chat example](https://github.com/xiaoosi/streamtag-ui/tree/main/examples/chat)
 
 ```sh
 npm install streamtag-ui zod

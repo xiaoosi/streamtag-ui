@@ -1,5 +1,7 @@
 # StreamTag UI
 
+**Streaming generative UI for React.**
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-18181b?style=flat)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?style=flat)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18.2%20%7C%2019-149eca?style=flat)](https://react.dev/)
@@ -7,9 +9,7 @@
 
 [Playground](#try-the-playground) · [Inline chat](#try-inline-chat) · [How It Works](#how-it-works) · [Tailwind example](#tailwind-css) · [API](#the-three-apis) · [Contributing](CONTRIBUTING.md)
 
-**Let AI compose HTML and your React components, then render them as the text arrives.**
-
-StreamTag UI is a small React library for generative interfaces. It combines ordinary HTML layouts with trusted, schema-defined React components. Text can grow while it streams; charts can receive complete data points before the entire chart has arrived.
+Render HTML layouts and your schema-defined React components progressively from LLM output. Text appears as it arrives; charts gain complete data points and new series while the rest of the reply is still streaming. StreamTag UI updates your registered components without executing generated JavaScript.
 
 [![Live inline chat: a natural-language request becomes a growing two-series chart and profit table, followed by an answer in the same conversation.](docs/media/inline-chat.gif)](docs/media/inline-chat.mp4)
 

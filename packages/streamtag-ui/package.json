@@ -1,7 +1,7 @@
 {
   "name": "streamtag-ui",
   "version": "0.1.0",
-  "description": "Stream HTML and your React components from AI-generated markup.",
+  "description": "Streaming generative UI for React. Render HTML and schema-defined React components from LLM output.",
   "type": "module",
   "license": "MIT",
   "files": [
@@ -39,11 +39,14 @@
   },
   "keywords": [
     "generative-ui",
+    "streaming-ui",
+    "llm-ui",
     "streaming",
     "react",
+    "react-components",
     "html",
     "llm",
-    "ai"
+    "zod"
   ],
   "author": "xiaoosi <xiaoosi@qq.com>",
   "homepage": "https://github.com/xiaoosi/streamtag-ui#readme",
