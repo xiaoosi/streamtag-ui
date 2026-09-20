@@ -24,7 +24,7 @@ const key = 'streamtag-chat:conversations:v1';
 export function newConversation(model = ''): Conversation {
   return {
     id: crypto.randomUUID(),
-    title: '新对话',
+    title: 'New chat',
     model,
     messages: [],
     updatedAt: Date.now(),

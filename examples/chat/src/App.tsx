@@ -39,24 +39,24 @@ import type { ModelOption } from '../shared/protocol';
 const suggestions = [
   {
     icon: ChartNoAxesCombined,
-    title: '帮我分析上半年的经营情况',
-    label: '一起看数据',
+    title: 'Analyze a business trend',
+    label: 'Explore data',
     prompt:
-      '帮我分析上半年的经营情况：1–6 月收入分别为 58、62、71、68、85、96 万元，成本分别为 32、35、39、38、43、47 万元。把收入和成本画成两条折线，列出每月利润，并告诉我你发现了什么。',
+      'Analyze this fictional business: Jan–Jun revenue was 58, 62, 71, 68, 85, 96 ($k), and costs were 32, 35, 39, 38, 43, 47 ($k). Plot revenue and costs as two lines, show monthly profit in a table, and share your key findings.',
   },
   {
     icon: MapPin,
-    title: '周末去杭州，怎么玩比较好？',
-    label: '做个小计划',
+    title: 'Plan a weekend in Hangzhou',
+    label: 'Make a plan',
     prompt:
-      '周末想去杭州玩两天，喜欢咖啡、书店和自然风景，不想太赶。你有什么建议？给我一个大致行程和可以勾选的出行清单。',
+      'Help me plan a relaxed two-day weekend in Hangzhou. I like coffee, bookstores, and nature. Suggest an itinerary and an interactive packing checklist.',
   },
   {
     icon: ListChecks,
-    title: '第一次开源，需要准备什么？',
-    label: '把想法落地',
+    title: 'Prepare an open-source launch',
+    label: 'Get started',
     prompt:
-      '我准备把一个 React 流式渲染库开源，已经有可以运行的 demo。第一次做开源，你觉得最应该先准备什么？帮我排个优先级，做成可勾选的清单。',
+      'I am preparing to open-source a React streaming renderer and already have a working demo. What should I focus on before my first release? Give me a prioritized, interactive checklist.',
   },
 ];
 
@@ -90,7 +90,9 @@ function AssistantReply({
       setCopyError('');
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      setCopyError('无法访问剪贴板，可以在源码中手动复制。');
+      setCopyError(
+        'Clipboard access is unavailable. You can copy the source manually.',
+      );
       setSource(true);
     }
   }
@@ -104,7 +106,7 @@ function AssistantReply({
         <span className="agent-avatar">
           <Code2 size={16} />
         </span>
-        <strong>助手</strong>
+        <strong>Assistant</strong>
         <span className="reply-model">{model || message.model}</span>
       </div>
       <div className="assistant-body">
@@ -126,7 +128,7 @@ function AssistantReply({
               <div className="reply-source">
                 <div>
                   <Code2 size={12} />
-                  这条回复的原始输出
+                  Response source
                 </div>
                 <pre data-testid="source-code">
                   <code>{message.content}</code>
@@ -139,13 +141,13 @@ function AssistantReply({
             <span />
             <span />
             <span />
-            <p>正在组织回答</p>
+            <p>Thinking</p>
           </div>
         ) : null}
         {streaming && message.content && (
           <div className="reply-streaming">
             <LoaderCircle className="spin" size={12} />
-            正在回复…
+            Responding…
           </div>
         )}
         {message.error && (
@@ -155,17 +157,19 @@ function AssistantReply({
         )}
         {message.status === 'stopped' && (
           <p className="reply-note">
-            已停止回复{message.content ? '，收到的内容已保留。' : '。'}
+            Response stopped
+            {message.content ? '. Received content has been kept.' : '.'}
           </p>
         )}
         {message.status === 'truncated' && (
           <p className="reply-error">
-            回复达到模型输出上限，内容可能不完整。可以继续追问。
+            The response reached the model output limit and may be incomplete.
+            You can ask a follow-up.
           </p>
         )}
         {issues.length > 0 && !streaming && (
           <details className="diagnostics">
-            <summary>渲染提示 · {issues.length}</summary>
+            <summary>Rendering notes · {issues.length}</summary>
             {issues.map((issue, index) => (
               <p key={index}>
                 <code>{issue.code}</code> {issue.message}
@@ -179,12 +183,17 @@ function AssistantReply({
               <button
                 className={source ? 'active' : ''}
                 onClick={() => setSource(!source)}
-                aria-label={source ? '查看渲染后的回复' : '查看回复源码'}
+                aria-label={
+                  source ? 'View rendered response' : 'View response source'
+                }
               >
                 <Code2 size={13} />
-                {source ? '查看回复' : '源码'}
+                {source ? 'View response' : 'Source'}
               </button>
-              <button onClick={() => void copy()} aria-label="复制回复源码">
+              <button
+                onClick={() => void copy()}
+                aria-label="Copy response source"
+              >
                 {copied ? <Check size={13} /> : <Copy size={13} />}
               </button>
             </>
@@ -192,11 +201,11 @@ function AssistantReply({
           {latest && !busy && (
             <button onClick={onRetry}>
               <RotateCcw size={12} />
-              重新回答
+              Retry
             </button>
           )}
           {!streaming && message.elapsedMs && (
-            <span>{(message.elapsedMs / 1000).toFixed(1)} 秒</span>
+            <span>{(message.elapsedMs / 1000).toFixed(1)} s</span>
           )}
         </div>
         {copyError && <p className="reply-note">{copyError}</p>}
@@ -231,7 +240,10 @@ export function App() {
     const controller = new AbortController();
     fetch('/api/models', { signal: controller.signal })
       .then(async (response) => {
-        if (!response.ok) throw new Error('模型配置加载失败，请检查本地服务。');
+        if (!response.ok)
+          throw new Error(
+            'Could not load models. Check that the server is running.',
+          );
         const data = (await response.json()) as {
           models: ModelOption[];
           defaultModel: string;
@@ -379,7 +391,7 @@ export function App() {
           ? undefined
           : error instanceof Error
             ? error.message
-            : '回复失败，请重试。',
+            : 'Could not generate a response. Please try again.',
       });
     } finally {
       abortRef.current = null;
@@ -407,13 +419,13 @@ export function App() {
       {sidebarOpen && (
         <button
           className="sidebar-backdrop"
-          aria-label="关闭对话列表"
+          aria-label="Close conversations"
           onClick={() => setSidebarOpen(false)}
         />
       )}
       <aside
         className={`sidebar ${sidebarOpen ? 'open' : ''}`}
-        aria-label="对话列表"
+        aria-label="Conversations"
       >
         <div className="sidebar-brand">
           <span>
@@ -421,7 +433,7 @@ export function App() {
           </span>
           <button
             className="icon-button mobile-only"
-            aria-label="关闭侧栏"
+            aria-label="Close sidebar"
             onClick={() => setSidebarOpen(false)}
           >
             <X size={17} />
@@ -433,10 +445,10 @@ export function App() {
           disabled={busy}
         >
           <Plus size={16} />
-          新对话
+          New chat
         </button>
-        <div className="history-label">最近对话</div>
-        <nav className="conversation-list" aria-label="历史对话">
+        <div className="history-label">Recent chats</div>
+        <nav className="conversation-list" aria-label="Chat history">
           {conversations
             .filter((item) => item.messages.length)
             .map((conversation) => (
@@ -456,7 +468,9 @@ export function App() {
               </button>
             ))}
           {!conversations.some((item) => item.messages.length) && (
-            <p className="empty-history">聊过的话题会留在这里。</p>
+            <p className="empty-history">
+              Your conversations will appear here.
+            </p>
           )}
         </nav>
         <a
@@ -466,7 +480,7 @@ export function App() {
           rel="noreferrer"
         >
           <Code2 size={14} />
-          <span>由 StreamTag UI 渲染</span>
+          <span>Rendered with StreamTag UI</span>
           <ArrowUpRight size={12} />
         </a>
       </aside>
@@ -474,15 +488,15 @@ export function App() {
         <header className="chat-header">
           <button
             className="icon-button mobile-only"
-            aria-label="打开对话列表"
+            aria-label="Open conversations"
             onClick={() => setSidebarOpen(true)}
           >
             <Menu size={19} />
           </button>
-          <h1>{active.messages.length ? active.title : '新对话'}</h1>
+          <h1>{active.messages.length ? active.title : 'New chat'}</h1>
           <span className="chat-header-status">
             <i className={busy ? 'live' : ''} />
-            {busy ? '正在回复' : '对话'}
+            {busy ? 'Responding' : 'Chat'}
           </span>
         </header>
         <div
@@ -502,8 +516,10 @@ export function App() {
               <span className="welcome-mark">
                 <MessageSquare size={24} strokeWidth={1.6} />
               </span>
-              <h2>有什么可以帮你？</h2>
-              <p>问问题、聊想法，或者一起分析数据。</p>
+              <h2>How can I help?</h2>
+              <p>
+                Ask a question, explore an idea, or make sense of your data.
+              </p>
               <div className="suggestions">
                 {suggestions.map((item) => (
                   <button
@@ -522,7 +538,7 @@ export function App() {
                 ))}
               </div>
               <p className="welcome-footnote">
-                不止文字，回答也可以是图表、表格和可以交互的小组件。
+                Answers can include charts, tables, and interactive components.
               </p>
             </div>
           ) : (
@@ -552,7 +568,7 @@ export function App() {
           {!atBottom && active.messages.length > 0 && (
             <button
               className="scroll-bottom"
-              aria-label="滚动到最新回复"
+              aria-label="Scroll to latest response"
               onClick={() => {
                 stickToBottom.current = true;
                 chatScroll.current?.scrollTo({
@@ -567,7 +583,8 @@ export function App() {
           <div className="composer-width">
             {(modelError || storageError) && (
               <div className="reply-error" role="alert">
-                {modelError || '浏览器存储空间不足，此次对话暂时无法保存。'}
+                {modelError ||
+                  'Browser storage is full. This conversation could not be saved.'}
               </div>
             )}
             <form
@@ -579,9 +596,9 @@ export function App() {
             >
               <textarea
                 ref={textarea}
-                aria-label="发送消息给助手"
+                aria-label="Message the assistant"
                 placeholder={
-                  active.messages.length ? '继续聊聊…' : '有什么想问的，尽管说…'
+                  active.messages.length ? 'Ask a follow-up…' : 'Ask anything…'
                 }
                 value={prompt}
                 maxLength={8000}
@@ -602,7 +619,7 @@ export function App() {
                 <div className="model-select">
                   <span className="model-dot" />
                   <select
-                    aria-label="选择模型"
+                    aria-label="Select model"
                     value={active.model}
                     disabled={busy || !models.length}
                     onChange={(event) =>
@@ -615,7 +632,9 @@ export function App() {
                       )
                     }
                   >
-                    {!models.length && <option value="">加载模型…</option>}
+                    {!models.length && (
+                      <option value="">Loading models…</option>
+                    )}
                     {models.map((model) => (
                       <option key={model.id} value={model.id}>
                         {model.label}
@@ -628,8 +647,8 @@ export function App() {
                   <button
                     className="send-button stop-button"
                     type="button"
-                    aria-label="停止回复"
-                    title="停止回复"
+                    aria-label="Stop response"
+                    title="Stop response"
                     onClick={() => abortRef.current?.abort()}
                   >
                     <Square size={13} fill="currentColor" />
@@ -638,7 +657,7 @@ export function App() {
                   <button
                     className="send-button"
                     type="submit"
-                    aria-label="发送消息"
+                    aria-label="Send message"
                     disabled={!prompt.trim() || !currentModel}
                   >
                     <ArrowUp size={19} />
@@ -647,8 +666,8 @@ export function App() {
               </div>
             </form>
             <div className="composer-footnote">
-              <span>回答实时呈现，可继续追问</span>
-              <span>Enter 发送 · Shift + Enter 换行</span>
+              <span>Replies stream live</span>
+              <span>Enter to send · Shift + Enter for newline</span>
             </div>
           </div>
         </div>

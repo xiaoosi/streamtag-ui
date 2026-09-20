@@ -10,7 +10,7 @@ import {
 } from '../../shared/catalog';
 
 const palette = ['#3975e8', '#14a38b', '#b084df', '#eb9a42', '#e56b7a'];
-const formatNumber = new Intl.NumberFormat('zh-CN', {
+const formatNumber = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 2,
 });
 
@@ -112,13 +112,15 @@ function LineChart({
             {item.name || '…'}
           </button>
         ))}
-        {!series.length && <span className="muted small">等待第一组数据…</span>}
+        {!series.length && (
+          <span className="muted small">Waiting for the first series…</span>
+        )}
       </div>
       <div className="chart-wrap">
         <svg
           viewBox="0 0 760 280"
           role="img"
-          aria-label={`${title}，${series.length} 组数据，${pointCount} 个数据点`}
+          aria-label={`${title}, ${series.length} series, ${pointCount} data ${pointCount === 1 ? 'point' : 'points'}`}
         >
           <title>{title}</title>
           {ticks.map((value) => {
@@ -230,7 +232,7 @@ function DataTable({
             (a, b) =>
               (a.cells[sort.index] || '').localeCompare(
                 b.cells[sort.index] || '',
-                'zh-CN',
+                'en-US',
                 { numeric: true },
               ) * sort.direction,
           )
@@ -245,7 +247,9 @@ function DataTable({
     >
       <div className="component-title">
         <h3>{title}</h3>
-        <span>{rows.length} 条记录</span>
+        <span>
+          {rows.length} {rows.length === 1 ? 'row' : 'rows'}
+        </span>
       </div>
       <div className="table-scroll">
         <table>
@@ -290,7 +294,9 @@ function DataTable({
           </tbody>
         </table>
       </div>
-      {!rows.length && <p className="component-empty">等待第一行数据…</p>}
+      {!rows.length && (
+        <p className="component-empty">Waiting for the first row…</p>
+      )}
     </section>
   );
 }
@@ -342,7 +348,7 @@ function TaskList({ title, items }: z.output<typeof stepsDefinition.schema>) {
 const placeholder = (
   <div className="component-loading">
     <span />
-    正在接收组件数据…
+    Receiving component data…
   </div>
 );
 export const components = [

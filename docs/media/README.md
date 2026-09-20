@@ -5,12 +5,12 @@ These are browser recordings of the running applications, using fictional busine
 ## Inline chat: live model
 
 - [`inline-chat.gif`](inline-chat.gif): the main README preview.
-- [`inline-chat.mp4`](inline-chat.mp4): the 17-second full recording at 1280 × 1040.
+- [`inline-chat.mp4`](inline-chat.mp4): the full recording at 1280 × 1040.
 - [`inline-chat.png`](inline-chat.png): the completed first reply.
 
 The recording shows the published `streamtag-ui@0.1.0` package in `examples/chat`: a natural-language request, two chart series growing point by point, a profit table filling row by row, a legend toggle, and a contextual follow-up in the same conversation.
 
-Both replies are live DeepSeek V4 Flash responses. The footage is continuous, with no time cuts, speed changes, delayed deltas, or prerecorded responses. The GIF reduces resolution and frame rate for the README. Model latency, output, and layout will vary between runs. English prompts make the example data readable to a wider audience; the chat interface is Chinese.
+Both replies are live DeepSeek V4 Flash responses. The footage is continuous, with no time cuts, speed changes, delayed deltas, or prerecorded responses. The GIF reduces resolution and frame rate for the README. Model latency, output, and layout will vary between runs. The interface, prompts, component labels, and replies are all in English.
 
 ### Record your own conversation
 

@@ -15,7 +15,7 @@ StreamTag UI is a small React library for generative interfaces. It combines ord
 
 **Ask a question. Watch the reply become an interactive interface. Keep chatting.** This recording shows a real model response with fictional business data: chart points and table rows arrive inside the message, a legend toggle works, and a follow-up uses the conversation context. No separate result page.
 
-[Watch the 17-second recording](docs/media/inline-chat.mp4) · [Run this example](examples/chat/README.md) · [How it was recorded](docs/media/README.md#inline-chat-live-model)
+[Watch the full recording](docs/media/inline-chat.mp4) · [Run this example](examples/chat/README.md) · [How it was recorded](docs/media/README.md#inline-chat-live-model)
 
 - **Three APIs:** `defineComponent`, `getComponentDescriptions`, and `StreamRenderer`.
 - **Your components:** use an existing chart, table, card, or product component.

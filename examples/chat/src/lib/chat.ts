@@ -19,9 +19,10 @@ export async function streamChat(
     const body = (await response.json().catch(() => null)) as {
       error?: string;
     } | null;
-    throw new Error(body?.error || `请求失败（HTTP ${response.status}）`);
+    throw new Error(body?.error || `Request failed (HTTP ${response.status})`);
   }
-  if (!response.body) throw new Error('浏览器未收到可读取的数据流。');
+  if (!response.body)
+    throw new Error('The browser did not receive a readable response stream.');
   let finished = false;
   for await (const event of readEvents(response.body)) {
     if (event.type === 'error') throw new Error(event.message);
@@ -31,5 +32,8 @@ export async function streamChat(
       break;
     }
   }
-  if (!finished) throw new Error('连接中断，已保留收到的页面，请重试。');
+  if (!finished)
+    throw new Error(
+      'Connection interrupted. Received content has been kept. Please try again.',
+    );
 }

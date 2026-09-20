@@ -4,12 +4,12 @@ const baseURL = 'http://127.0.0.1:4175';
 test.use({ baseURL });
 
 async function send(page: Page, text: string) {
-  await page.getByRole('textbox', { name: '发送消息给助手' }).fill(text);
+  await page.getByRole('textbox', { name: 'Message the assistant' }).fill(text);
   const request = page.waitForRequest(
     (request) =>
       request.url().endsWith('/api/chat') && request.method() === 'POST',
   );
-  await page.getByRole('button', { name: '发送消息', exact: true }).click();
+  await page.getByRole('button', { name: 'Send message', exact: true }).click();
   return (await request).postDataJSON() as {
     sessionId: string;
     messages: Array<{ role: string; content: string }>;
@@ -69,7 +69,9 @@ test('streams schema-valid points inside the assistant message, keeps the chart 
   await expect(replies).toHaveCount(2);
   await expect(replies.last()).toContainText('February is higher: 140 USD.');
   await expect(chart).toHaveAttribute('data-points', '4');
-  await expect(page.getByText('渲染提示', { exact: false })).toHaveCount(0);
+  await expect(page.getByText('Rendering notes', { exact: false })).toHaveCount(
+    0,
+  );
   expect(errors).toEqual([]);
 });
 
@@ -85,7 +87,9 @@ test('stops upstream inference, restores partial replies after reload, and retri
     'data-points',
     '0',
   );
-  await page.getByRole('button', { name: '停止回复', exact: true }).click();
+  await page
+    .getByRole('button', { name: 'Stop response', exact: true })
+    .click();
   await expect(reply).toHaveAttribute('data-status', 'stopped');
   await expect
     .poll(
@@ -114,7 +118,7 @@ test('stops upstream inference, restores partial replies after reload, and retri
     (request) =>
       request.url().endsWith('/api/chat') && request.method() === 'POST',
   );
-  await page.getByRole('button', { name: '重新回答', exact: true }).click();
+  await page.getByRole('button', { name: 'Retry', exact: true }).click();
   expect((await retried).postDataJSON().messages).toEqual(input.messages);
   await expect(reply).toHaveAttribute('data-status', 'streaming');
   await expect(reply.getByTestId('line-chart')).toHaveAttribute(

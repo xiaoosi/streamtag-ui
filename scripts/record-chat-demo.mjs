@@ -23,7 +23,8 @@ try {
   const page = await context.newPage();
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto(baseURL);
-  await expect(page.getByLabel('选择模型')).toBeEnabled();
+  await expect(page.getByLabel('Select model')).toBeEnabled();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
 
   // Observe real DOM updates without modifying the application or its stream.
   await page.evaluate(() => {
@@ -55,12 +56,12 @@ try {
     });
   });
 
-  const input = page.getByRole('textbox', { name: '发送消息给助手' });
+  const input = page.getByRole('textbox', { name: 'Message the assistant' });
   await input.fill(
-    'Here is fictional business data for Jan–Jun: revenue 58, 62, 71, 68, 85, 96; costs 32, 35, 39, 38, 43, 47 ($k). Plot both lines, show monthly profit in a table, and add one short takeaway. Reply in English.',
+    'Here is fictional business data for Jan–Jun: revenue 58, 62, 71, 68, 85, 96; costs 32, 35, 39, 38, 43, 47 ($k). Plot both lines, show monthly profit in a sortable table, and add one short takeaway. Reply in English.',
   );
   await page.waitForTimeout(1700);
-  await page.getByRole('button', { name: '发送消息', exact: true }).click();
+  await page.getByRole('button', { name: 'Send message', exact: true }).click();
   const first = page.getByTestId('assistant-message').first();
   await expect(first).toHaveAttribute('data-status', 'complete', {
     timeout: 180000,
@@ -108,7 +109,7 @@ try {
     'Which month had the highest profit? Answer in one English sentence.',
   );
   await page.waitForTimeout(1400);
-  await page.getByRole('button', { name: '发送消息', exact: true }).click();
+  await page.getByRole('button', { name: 'Send message', exact: true }).click();
   await expect(page.getByTestId('assistant-message')).toHaveCount(2);
   await expect(page.getByTestId('assistant-message').nth(1)).toHaveAttribute(
     'data-status',
@@ -116,13 +117,18 @@ try {
     { timeout: 180000 },
   );
   await expect(page.getByTestId('assistant-message').nth(1)).toContainText(
-    /Jun|6\s*月|六月/i,
+    /Jun/i,
   );
   await expect(page.getByTestId('assistant-message').nth(1)).toContainText(
     '49',
   );
   await expect(page.locator('.diagnostics, .reply-error')).toHaveCount(0);
   await expect(chart).toHaveAttribute('data-points', '12');
+  assert.doesNotMatch(
+    await page.locator('body').innerText(),
+    /\p{Script=Han}/u,
+    'The public demo must show an English interface and English replies.',
+  );
   await page.waitForTimeout(2500);
   const video = page.video();
   await context.close();

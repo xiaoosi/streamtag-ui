@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const metricDefinition = {
   name: 'metric-card',
   description:
-    'A key metric. value is a complete number; unit is an optional suffix, e.g. 万元, %, 人. change is a short comparison, e.g. 较上月 +12%. tone controls the comparison color.',
+    'A key metric. value is a complete number; unit is an optional suffix, e.g. $k, %, users. change is a short comparison, e.g. +12% vs. last month. tone controls the comparison color.',
   schema: z.object({
     label: z.string(),
     value: z.number(),
@@ -12,7 +12,7 @@ export const metricDefinition = {
     tone: z.enum(['neutral', 'positive', 'negative']).default('neutral'),
   }),
   example:
-    '<metric-card><label>月度收入</label><value>128</value><unit>万元</unit><change>环比 +12%</change><tone>positive</tone></metric-card>',
+    '<metric-card><label>Monthly revenue</label><value>128</value><unit>$k</unit><change>+12% vs. last month</change><tone>positive</tone></metric-card>',
 };
 
 export const lineDefinition = {
@@ -34,7 +34,7 @@ export const lineDefinition = {
       .default([]),
   }),
   example:
-    '<line-chart><title>收入趋势</title><unit>万元</unit><series><item><name>收入</name><points><item><label>1月</label><value>58</value></item><item><label>2月</label><value>72</value></item></points></item></series></line-chart>',
+    '<line-chart><title>Revenue trend</title><unit>$k</unit><series><item><name>Revenue</name><points><item><label>Jan</label><value>58</value></item><item><label>Feb</label><value>72</value></item></points></item></series></line-chart>',
 };
 
 export const tableDefinition = {
@@ -49,7 +49,7 @@ export const tableDefinition = {
       .default([]),
   }),
   example:
-    '<data-table><title>渠道对比</title><columns><item>渠道</item><item>收入</item></columns><rows><item><cells><item>自然流量</item><item>32 万元</item></cells></item></rows></data-table>',
+    '<data-table><title>Channels</title><columns><item>Channel</item><item>Revenue</item></columns><rows><item><cells><item>Organic</item><item>$32k</item></cells></item></rows></data-table>',
 };
 
 export const stepsDefinition = {

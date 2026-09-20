@@ -70,7 +70,7 @@ test('client requires an explicit done event', async (context) => {
     streamChat(input, new AbortController().signal, (event) => {
       if (event.type === 'delta') text.push(event.text);
     }),
-    /连接中断/,
+    /Connection interrupted/,
   );
   assert.deepEqual(text, ['<p>partial']);
 });
