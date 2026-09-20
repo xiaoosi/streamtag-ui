@@ -53,6 +53,6 @@ Use `streamtag-ui/server` to import `getComponentDescriptions` without React. Pa
 
 The host supplies CSS, model integration, and transport. Use `onError` to receive diagnostics. Pass `streaming={false}` on completion; the default is false for static saved markup. Change the renderer key to explicitly start a new document.
 
-Requires React 18.2 or 19 and Zod 4. ESM only. The initial format supports objects, arrays, strings, finite numbers, booleans, enums, scalar literals, optional fields, and defaults. It is an XML-style markup format, not the A2UI JSON protocol. The renderer filters unsupported HTML but is not a security sandbox.
+Requires React 18.2 or 19 and Zod 4. ESM only. The HTML/XML-style DSL uses HTML tags for layouts and custom tags for registered React components and their props. Component props support objects, arrays, strings, finite numbers, booleans, enums, scalar literals, optional fields, and defaults. The renderer filters unsupported HTML but is not a security sandbox.
 
 MIT license.

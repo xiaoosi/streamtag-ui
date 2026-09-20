@@ -23,7 +23,7 @@ Render HTML layouts and your schema-defined React components progressively from 
 - **Your model and transport:** pass accumulated text from any source.
 - **One package:** TypeScript types, a browser renderer, and a React-free server description entry point.
 
-Version 0.1 uses its own XML-style markup format, not the A2UI JSON protocol.
+StreamTag UI uses an HTML/XML-style DSL: HTML tags define layouts, and custom tags describe registered React components and their props.
 
 ## Install
 
@@ -232,7 +232,7 @@ On the client, call `defineComponent({ ...scoreDefinition, component: ScoreCard 
 - HTML uses a documented allowlist. Script, iframe, style, event-handler, and executable URL output are not supported. Model output is data, not executable component code.
 - The renderer is **not a browser security sandbox**. Trusted registered components control their own behavior. Styles can affect layout, and supported image/link URLs can reference external resources. Use appropriate host isolation when handling untrusted sources.
 - CSS classes must exist in the host. Tailwind runtime generation and CSS Modules class-name mapping are application concerns.
-- No model SDK, chat state, transport, arbitrary code execution, A2UI compatibility, or built-in chart library is included.
+- No model SDK, chat state, transport, arbitrary code execution, or built-in chart library is included.
 - Appended text is parsed incrementally. Replaced or shortened content starts a new document. To explicitly start a new stream whose text happens to share the previous prefix, change the renderer's React `key`.
 
 ## Repository

@@ -1,6 +1,6 @@
 # Markup syntax
 
-StreamTag UI uses an XML-style subset of HTML with custom component tags. It is not JSX and does not evaluate expressions.
+StreamTag UI uses an HTML/XML-style DSL with a supported subset of HTML for layouts and custom tags for React components and their props. It is not JSX and does not evaluate expressions.
 
 ## Layout
 
