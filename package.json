@@ -1,0 +1,37 @@
+{
+  "name": "streamtag-ui-workspace",
+  "private": true,
+  "packageManager": "pnpm@10.30.3",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm --filter streamtag-ui build && pnpm --filter @streamtag-ui/playground dev",
+    "build": "pnpm --filter streamtag-ui build && pnpm --filter \"./apps/*\" --filter \"./examples/*\" build",
+    "test": "vitest run",
+    "test:browser": "playwright test",
+    "typecheck": "pnpm --filter streamtag-ui build && pnpm -r typecheck",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm format:check && pnpm build && pnpm -r typecheck && pnpm test",
+    "changeset": "changeset",
+    "version-packages": "changeset version"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.8",
+    "@playwright/test": "^1.58.2",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^22.19.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.1.4",
+    "jsdom": "^26.1.0",
+    "prettier": "^3.8.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^3.2.4",
+    "zod": "^4.3.6"
+  }
+}

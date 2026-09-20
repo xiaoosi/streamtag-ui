@@ -1,0 +1,1 @@
+<div><h2>A report with an invalid component</h2><data-table><title>Invalid data</title><rows><item><month>January</month><revenue>oops</revenue><cost>24</cost></item></rows></data-table><p>The rest of the report is still visible.</p></div>

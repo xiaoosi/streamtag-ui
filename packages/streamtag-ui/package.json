@@ -1,0 +1,62 @@
+{
+  "name": "streamtag-ui",
+  "version": "0.1.0",
+  "description": "Stream HTML and your React components from AI-generated markup.",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js"
+    }
+  },
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "prepack": "pnpm run build"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0 || ^19.0.0",
+    "zod": "^4.0.0"
+  },
+  "dependencies": {
+    "htmlparser2": "^10.1.0",
+    "style-to-object": "^1.0.14"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "generative-ui",
+    "streaming",
+    "react",
+    "html",
+    "llm",
+    "ai"
+  ],
+  "author": "xiaoosi <xiaoosi@qq.com>",
+  "homepage": "https://github.com/xiaoosi/streamtag-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaoosi/streamtag-ui.git",
+    "directory": "packages/streamtag-ui"
+  },
+  "bugs": {
+    "url": "https://github.com/xiaoosi/streamtag-ui/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

@@ -1,0 +1,36 @@
+<div class="report-layout">
+  <section class="report-intro">
+    <p class="eyebrow">REVENUE REPORT / JAN–JUN 2026</p>
+    <h1>Revenue overview</h1>
+    <p class="report-lead">Monthly revenue, costs, and margin across the first half of the year.</p>
+    <div class="metric-grid">
+      <div class="metric"><span>MONTHLY REVENUE</span><strong>$86k</strong><small>+48% since January</small></div>
+      <div class="metric"><span>GROSS MARGIN</span><strong>64%</strong><small>+5 points since January</small></div>
+    </div>
+  </section>
+  <section class="report-card">
+    <p class="eyebrow">PERFORMANCE</p>
+    <line-chart>
+      <title>Revenue &amp; costs</title>
+      <series>
+        <item><name>Revenue</name><data><item>58</item><item>62</item><item>61</item><item>73</item><item>79</item><item>86</item></data></item>
+        <item><name>Costs</name><data><item>24</item><item>25</item><item>26</item><item>28</item><item>29</item><item>31</item></data></item>
+      </series>
+    </line-chart>
+  </section>
+  <section class="report-card">
+    <p class="eyebrow">MONTHLY BREAKDOWN</p>
+    <data-table>
+      <title>Operating results</title>
+      <rows>
+        <item><month>January</month><revenue>58</revenue><cost>24</cost></item>
+        <item><month>February</month><revenue>62</revenue><cost>25</cost></item>
+        <item><month>March</month><revenue>61</revenue><cost>26</cost></item>
+        <item><month>April</month><revenue>73</revenue><cost>28</cost></item>
+        <item><month>May</month><revenue>79</revenue><cost>29</cost></item>
+        <item><month>June</month><revenue>86</revenue><cost>31</cost></item>
+      </rows>
+    </data-table>
+  </section>
+  <aside class="report-note"><strong>About this report.</strong><p>Fictional sample data. The ECharts chart and React table update as validated data arrives; the surrounding layout uses plain CSS.</p></aside>
+</div>
